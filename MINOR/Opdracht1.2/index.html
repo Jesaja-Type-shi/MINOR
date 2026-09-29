@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Interactieve Galerij</title>
+  <link href="index.css">
+  <!-- A-Frame library, geladen via jsdelivr -->
+  <script src="https://cdn.jsdelivr.net/npm/aframe@1.5.0/dist/aframe-master.min.js"></script>
+</head>
+<body>
+
+  <div id="hint">Klik op de vormen om ze van kleur en schaal te veranderen</div>
+
+  <a-scene background="color: #1b1e2b">
+    <!-- Vloer, zodat de galerij een beetje ruimtelijk aanvoelt -->
+    <a-plane position="0 0 -4" rotation="-90 0 0" width="12" height="12" color="#2a2e40"></a-plane>
+
+    <!-- De galerij-objecten -->
+    <a-box id="mijnKubus" position="-2 1 -4" color="#3357FF" interactief-object></a-box>
+    <a-sphere id="mijnBol" position="2 1 -4" color="#FF5733" radius="0.7" interactief-object></a-sphere>
+    <a-cylinder id="mijnCilinder" position="0 1 -6" color="#33FF57" radius="0.6" height="1.4" interactief-object></a-cylinder>
+
+    <!-- Wat licht zodat de vormen goed zichtbaar zijn -->
+    <a-entity light="type: ambient; intensity: 0.6"></a-entity>
+    <a-entity light="type: point; intensity: 0.8" position="0 3 0"></a-entity>
+
+    <!-- Camera met cursor (laserstraaltje) om te kunnen klikken -->
+    <a-entity camera look-controls position="0 1.6 0">
+      <a-entity cursor="rayOrigin: mouse;"
+                 position="0 0 -1"
+                 geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                 material="color: white; shader: flat">
+      </a-entity>
+    </a-entity>
+
+  </a-scene>
+</body>
+<script src="index.js"></script>
+</html>

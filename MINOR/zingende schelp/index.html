@@ -9,14 +9,62 @@
 <body>
 <audio id="shellAudio" src="../strandaudiobitv.mp3" preload="auto"></audio>
 <a-scene>
-    <a-sky color="#78c8f5"></a-sky>
+    <a-assets>
+        <a-asset-item id="zon" src="/MINOR/zon.glb"></a-asset-item>
+        <a-asset-item id="ladder" src="/MINOR/GLB format/ladder.glb"></a-asset-item>
+        <a-asset-item id="gate" src="/MINOR/GLB format/gate.glb"></a-asset-item>
+    </a-assets>
+
+    <a-sky src="/MINOR/Skyboxes/skybox-day.png"></a-sky>
     <a-plane
         position="0 0 0"
         rotation="-90 0 0"
         width="100"
         height="100"
-        color="#f4d35e">
+        src="/MINOR/Skyboxes/skybox-morning.png">
     </a-plane>
+
+    <a-plane
+        position="-44 0.02 0"
+        rotation="-90 0 0"
+        width="28"
+        height="100"
+        color="#59c9ff"
+        opacity="0.95">
+    </a-plane>
+    <a-plane
+        position="44 0.02 0"
+        rotation="-90 0 0"
+        width="28"
+        height="100"
+        color="#59c9ff"
+        opacity="0.95">
+    </a-plane>
+    <a-plane
+        position="0 0.02 -44"
+        rotation="-90 0 0"
+        width="100"
+        height="28"
+        color="#59c9ff"
+        opacity="0.95">
+    </a-plane>
+    <a-plane
+        position="0 0.02 44"
+        rotation="-90 0 0"
+        width="100"
+        height="28"
+        color="#59c9ff"
+        opacity="0.95">
+    </a-plane>
+
+    <a-entity position="0 12 0">
+        <a-light type="point" intensity="1.8" distance="60" color="#ffd166"></a-light>
+        <a-sphere radius="2.2" color="#ffd166"></a-sphere>
+    </a-entity>
+
+    <a-entity gltf-model="#ladder" position="1 0.2 -3" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity gltf-model="#gate" position="-2 0 -5" scale="0.8 0.8 0.8"></a-entity>
+
     <a-sphere
         id="schelp"
         class="clickable"
@@ -26,11 +74,9 @@
         onclick="playShellSound()"
         animation="property: position; from: 0 0.55 2; to: 0 0.85 2; dir: alternate; dur: 1200; loop: true; easing: easeInOutSine">
     </a-sphere>
-    <a-entity position="0 1.6 6">
-        <a-camera cursor="rayOrigin: mouse" raycaster="objects: .clickable"></a-camera>
-    </a-entity>
-</a-scene>
 
+    <a-camera position="0 1.6 8" wasd-controls look-controls cursor="rayOrigin: mouse" raycaster="objects: .clickable"></a-camera>
+</a-scene>
 <script>
     function playShellSound() {
         const shellAudio = document.getElementById("shellAudio");
